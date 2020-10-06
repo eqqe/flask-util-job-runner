@@ -19,6 +19,7 @@ def handle(method_name, version, uuid_str, data_json):
             return jsonify(error_message), 500
         res = resp.json()
         res['uuid_str'] = uuid_str
+        res['client_id'] = 'client_data/' + res['client_id']
         return jsonify(res), 200
     except requests.exceptions.ConnectionError as e:
         message = 'Cannot send POST request to ' + url
